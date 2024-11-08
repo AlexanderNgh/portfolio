@@ -1,10 +1,10 @@
-<p>landing works!</p>
+
 <div class="grid grid-cols-2">
-    <div>help</div>
-    <div>help</div>
-    <div>help</div>
-    <div>help</div>
-    <div>help</div>
-    <div>help</div>
-    <div>help</div>
+    <app-about-cards
+        [text]="test"
+        [title]="test2"
+        [@aboutCardsTrigger]="cardState"
+    ></app-about-cards>
 </div> 
+
+<button (click)="clicked()">clickme</button>
