@@ -1,10 +1,42 @@
 
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-3 w-full gap-16" [@aboutCardsTrigger]="cardState">
     <app-about-cards
         [text]="test"
         [title]="test2"
-        [@aboutCardsTrigger]="cardState"
+    ></app-about-cards>
+
+    <app-about-cards
+    [text]="test"
+    [title]="test2"
+    ></app-about-cards>
+
+    <app-about-cards
+    [text]="test"
+    [title]="test2"
     ></app-about-cards>
 </div> 
 
+<div [@loadTrigger]="state">
+    <app-about-cards
+    [text]="test"
+    [title]="test2"
+
+    ></app-about-cards>
+</div>
+
+<div [@loadTrigger]="state">
+    hello
+</div>
+
+
+<div [@staggerTrigger]="nums">
+    @for(num of nums; let idx = $index; track idx)
+    {
+        <div>
+            testing {{num}}
+        </div>
+    }
+</div>
+
 <button (click)="clicked()">clickme</button>
+<button (click)="add()"> add me </button>
