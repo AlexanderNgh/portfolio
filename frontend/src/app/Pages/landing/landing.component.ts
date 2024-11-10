@@ -1,5 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, QueryList, ElementRef } from '@angular/core';
 import { AboutCardsComponent } from '../../components/about-cards/about-cards.component';
+import { ViewChildren } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import {
   trigger,
   state,
@@ -7,6 +9,8 @@ import {
   animate,
   transition, query, stagger
 } from '@angular/animations';
+//import { Element } from '@angular/compiler';
+import { After } from 'v8';
 
 @Component({
   selector: 'app-landing',
@@ -23,7 +27,7 @@ import {
 
     trigger('loadTrigger', [
       state('hidden', style({
-        transform: 'translateX(100%)', opacity: 0})
+        transform: 'translateX(20%)', opacity: 0})
       ), state('shown', style({
         transform: 'translateX(0%)', opacity:100})
       ), transition('hidden => shown', [
@@ -33,7 +37,7 @@ import {
     trigger("staggerTrigger", [
       transition( '* <=> *', [
         query(':enter', [
-          style({opacity: 1, transform: 'scale(0.7)'}),
+          style({opacity: 0, transform: 'scale(0.7)'}),
           stagger(100, [
             animate('500ms ease-in', style({opacity:1, transform:'scale(1)'}))
           ],), 
@@ -48,28 +52,77 @@ import {
       ])
     ]),
 
+    trigger('inOutAnimation', [
+      transition('inView => outView', [
+        animate('300ms ease-out', style({ opacity: 0 })),
+      ]),
+      transition('outView => inView', [
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ])
+    ]),
+
   ],
 })
 export class LandingComponent implements AfterViewInit{
-  test: string = 'test';
-  test2: string = 'testing';
-  protected cardState: 'open' | 'close' = 'close';
-  protected state: 'shown' | 'hidden' = 'hidden';
+  @ViewChildren('parent') elements: QueryList<ElementRef> | null = null; // Reference to multiple elements
+  private observer: IntersectionObserver;
+  private visibilityMap: Map<Element, boolean> = new Map(); // Map to track visibility of each element
+  private elementMap: Map<ElementRef, Element> = new Map();
 
-  nums = [0]
-  clicked()
-  {
-    this.cardState='open';
+  // constructor
+  constructor() {
+    const callback = (entries: any) => { 
+      
+      entries.forEach((entry: any)=> {
+
+        const targetElement = entry.target;
+
+        if (entry.isIntersecting) 
+        {
+          console.log(`${targetElement} entered the viewport`);
+          this.visibilityMap.set(targetElement, true);
+          targetElement.classList.add('in-view'); 
+          console.log(this.visibilityMap.get(targetElement))
+        } 
+        else 
+        {
+          console.log(`${targetElement} left the viewport`);
+          this.visibilityMap.set(targetElement, false);  // Set as not visible
+          targetElement.classList.remove('in-view'); // Remove CSS class for out-of-view state
+        }
+      }
+      )};
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      }
+
+      this.observer = new IntersectionObserver(callback, options);
+  
   }
 
-  add()
+  // for the html to call! 
+  triggerHelper(ref: HTMLElement)
   {
-    this.nums = [...this.nums, this.nums.length + 1]
+    const native = ref;
+    const flag = this.visibilityMap.get(native);
+    if(flag)
+    {
+      return 'shown';
+    }else
+    {
+      return 'hidden';
+    }
   }
 
   ngAfterViewInit() {
-    setTimeout( () => {
-    this.state = 'shown';
-    }, 1000);
+    if (this.elements) {
+      this.elements.forEach((box: ElementRef) => {
+        this.observer.observe(box.nativeElement);
+      });
+    }
   }
+
 }

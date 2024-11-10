@@ -1,4 +1,4 @@
-
+<!--
 <div class="grid grid-cols-3 w-full gap-16" [@aboutCardsTrigger]="cardState">
     <app-about-cards
         [text]="test"
@@ -40,3 +40,18 @@
 
 <button (click)="clicked()">clickme</button>
 <button (click)="add()"> add me </button>
+ -->
+
+<div class="w-full h-full overflow-y-auto flex flex-col space-y-32">
+
+    <div class="w-[500px] h-[500px] bg-blue-100" #parent #anim1 [@loadTrigger]="triggerHelper(anim1)">
+        hello
+    </div>
+    
+
+
+    <div #parent #anim2 [@loadTrigger]="triggerHelper(anim2)">
+        hello 2
+    </div>
+</div>
+
