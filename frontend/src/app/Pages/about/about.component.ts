@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, QueryList, ElementRef } from '@angula
 import { ViewChildren } from '@angular/core';
 import { TyperComponent } from '../../components/typer/typer.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { ExperienceCardsComponent } from '../../components/experience-cards/experience-cards.component';
 import {
   trigger,
   state,
@@ -11,13 +13,12 @@ import {
 } from '@angular/animations';
 //import { Element } from '@angular/compiler';
 
-
 @Component({
-  selector: 'app-landing',
+  selector: 'app-about',
   standalone: true,
-  imports: [TyperComponent, HeaderComponent],
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],  // Fixed typo here as well (it should be 'styleUrls', not 'styleUrl')
+  imports: [HeaderComponent, MatChipsModule, ExperienceCardsComponent ],
+  templateUrl: './about.component.html',
+  styleUrl: './about.component.css',
   animations: [
     trigger('aboutCardsTrigger', [
       state('close', style({ transform: 'translateX(300%)' })), // Corrected 'translationX' to 'translateX' and closed the parentheses
@@ -63,7 +64,7 @@ import {
 
   ],
 })
-export class LandingComponent implements AfterViewInit{
+export class AboutComponent {
   // view children gets the array of elements we will apply the riseAnimation to
   // also set up the observer and visibility map to track
   @ViewChildren('parent') elements: QueryList<ElementRef> | null = null; // Reference to multiple elements

@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit, QueryList, ElementRef } from '@angular/core';
 import { ViewChildren } from '@angular/core';
-import { TyperComponent } from '../../components/typer/typer.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { ExperienceCardsComponent } from '../../components/experience-cards/experience-cards.component';
 import {
   trigger,
   state,
@@ -9,15 +10,12 @@ import {
   animate,
   transition, query, stagger
 } from '@angular/animations';
-//import { Element } from '@angular/compiler';
-
-
 @Component({
-  selector: 'app-landing',
+  selector: 'app-projects',
   standalone: true,
-  imports: [TyperComponent, HeaderComponent],
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],  // Fixed typo here as well (it should be 'styleUrls', not 'styleUrl')
+  imports: [HeaderComponent, MatChipsModule, ExperienceCardsComponent],
+  templateUrl: './projects.component.html',
+  styleUrl: './projects.component.css',
   animations: [
     trigger('aboutCardsTrigger', [
       state('close', style({ transform: 'translateX(300%)' })), // Corrected 'translationX' to 'translateX' and closed the parentheses
@@ -63,7 +61,7 @@ import {
 
   ],
 })
-export class LandingComponent implements AfterViewInit{
+export class ProjectsComponent {
   // view children gets the array of elements we will apply the riseAnimation to
   // also set up the observer and visibility map to track
   @ViewChildren('parent') elements: QueryList<ElementRef> | null = null; // Reference to multiple elements

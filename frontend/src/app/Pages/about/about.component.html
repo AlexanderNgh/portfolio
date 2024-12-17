@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="w-full h-screen overflow-y-auto dark:bg-gray-900 dark:text-white font-onest pt-[200px]">
+
+    <div class="h-screen flex flex-col space-y-48">
+
+
+        <div class="space-y-16 p-8">
+            <div class="text-2xl font-bold w-full lg:pl-64" 
+                #parent #header [@loadTrigger]="triggerHelper(header)">
+                About me
+            </div>
+            
+            <div class="w-full lg:px-64" 
+                #parent #div1 [@loadTrigger]="triggerHelper(div1)">
+                👋🏼 Hello, my name is Alex! I am a web developer. I majored in Computer Science
+                at the University of Nevada Las Vegas.
+            </div>
+
+            <div class="w-full lg:px-64" 
+                #parent #div2 [@loadTrigger]="triggerHelper(div2)">
+                I work with Angular (Typescript) to create solutions for business problems. 
+                I love the artistic nature of the frontend, and I am excited to continue to grow
+                and explore other framworks like React. I also have experience in the backend. 
+                I have utilized .NET core to create fullstack applications, and have worked with
+                Google's Firebase BaaS for a lightweight application. Having this experience allows
+                me to further my abilities in the frontend!
+            </div>
+
+            <div class="w-full lg:px-64" 
+                #parent #div3 [@loadTrigger]="triggerHelper(div3)">
+                I was born and raised in Las Vegas, Nevada. I am excited to work with the small businesses
+                and organizations that serve the community in which I grew up. I hope to provide my services of creating
+                pleasing web solutions for groups such as non-profits, start-ups, etc. 
+            </div>
+        </div>
+
+        <div class="space-y-16 p-8">
+            <div class="text-2xl font-bold w-full lg:px-64" 
+            #parent #header2 [@loadTrigger]="triggerHelper(header2)">
+                My Tech Stack
+            </div>
+
+            <div class="w-full grid grid-cols-3 gap-4 lg:px-64 lg:grid-cols-7" 
+            #parent #div4 [@loadTrigger]="triggerHelper(div4)">
+                <mat-chip>Angular</mat-chip>
+                <mat-chip>TailwindCSS</mat-chip>
+                <mat-chip>HTML</mat-chip>
+                <mat-chip>.NET Core</mat-chip>
+                <mat-chip>Firebase</mat-chip>
+                <mat-chip>Azure</mat-chip>
+                <mat-chip>Git/Github</mat-chip>
+            </div>
+        
+        </div>
+
+        <div class="space-y-16 p-8">
+            <div class="text-2xl font-bold w-full lg:px-64" 
+            #parent #header3 [@loadTrigger]="triggerHelper(header3)">
+                Experiences
+            </div>
+
+            <div class="w-full grid grid-cols-2 lg:px-64">
+                <app-experience-cards>
+                </app-experience-cards>
+            </div>
+        </div>
+
+</div>

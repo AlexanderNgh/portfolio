@@ -1,57 +1,21 @@
-<!--
-<div class="grid grid-cols-3 w-full gap-16" [@aboutCardsTrigger]="cardState">
-    <app-about-cards
-        [text]="test"
-        [title]="test2"
-    ></app-about-cards>
+<app-header></app-header>
+<div class="w-full h-screen overflow-y-auto dark:bg-gray-900 dark:text-white font-onest ">
 
-    <app-about-cards
-    [text]="test"
-    [title]="test2"
-    ></app-about-cards>
-
-    <app-about-cards
-    [text]="test"
-    [title]="test2"
-    ></app-about-cards>
-</div> 
-
-<div [@loadTrigger]="state">
-    <app-about-cards
-    [text]="test"
-    [title]="test2"
-
-    ></app-about-cards>
-</div>
-
-<div [@loadTrigger]="state">
-    hello
-</div>
-
-
-<div [@staggerTrigger]="nums">
-    @for(num of nums; let idx = $index; track idx)
-    {
-        <div>
-            testing {{num}}
+    <div class="h-screen flex flex-col items-center justify-center space-y-16">
+        <div class="text-5xl font-bold w-full flex justify-center text-wrap
+                    lg:text-8xl" 
+            #parent #header [@loadTrigger]="triggerHelper(header)">
+            Hey! I'm Alex
         </div>
-    }
-</div>
 
-<button (click)="clicked()">clickme</button>
-<button (click)="add()"> add me </button>
- -->
-
-<div class="w-full h-full overflow-y-auto flex flex-col space-y-32">
-
-    <div class="w-[500px] h-[500px] bg-blue-100" #parent #anim1 [@loadTrigger]="triggerHelper(anim1)">
-        hello
+    <div class="w-full h-[200px] flex justify-center"
+        #parent #typer [@loadTrigger]="triggerHelper(typer)">
+            <app-typer></app-typer>
+        </div>
     </div>
-    
 
-
-    <div #parent #anim2 [@loadTrigger]="triggerHelper(anim2)">
-        hello 2
+    <div class="w-full h-[500px] bg-blue-100">
+        
     </div>
-</div>
 
+</div>
