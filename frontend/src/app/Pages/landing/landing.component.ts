@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, QueryList, ElementRef } from '@angula
 import { ViewChildren } from '@angular/core';
 import { TyperComponent } from '../../components/typer/typer.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 import {
   trigger,
   state,
@@ -15,7 +16,7 @@ import {
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [TyperComponent, HeaderComponent],
+  imports: [TyperComponent, HeaderComponent, FooterComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],  // Fixed typo here as well (it should be 'styleUrls', not 'styleUrl')
   animations: [

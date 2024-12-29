@@ -11,4 +11,7 @@ export class FooterComponent {
   @Input() desc: string = "";
   @Input() position: string = "";
   @Input() company: string = "";
+
+  phone = "(702)-416-0384"
+  email = "alexanderpham023@gmail.com"
 }
